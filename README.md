@@ -1,0 +1,37 @@
+- Maven
+- AssertJ
+- Iterator
+- Generic
+- List
+- Set
+- Map
+- Tree
+- Ввод-вывод
+- Socket
+- Логгирование
+- Сериализация
+- Настройка PostgreSQL
+- Create Update Insert
+- Query
+- Outer join
+- Объекты Базы данных
+- JDBC
+- Liquibase
+- Проект. Агрегатор Java вакансий
+- Понятие сборщик мусора
+- Профилирование приложения
+- Типы ссылок и коллекции на soft weak ссылках
+- Java Memory Model
+- TDD
+- SRP
+- OCP
+- LSP
+- ISP
+- DIP
+- Два указателя
+- Hash структуры
+- Сортировки
+- Очереди и стеки
+- Скользящее окно
+- Жадный алгоритм
+- Деревья
