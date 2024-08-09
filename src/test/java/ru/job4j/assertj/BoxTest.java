@@ -3,6 +3,7 @@ package ru.job4j.assertj;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.withPrecision;
 
 class BoxTest {
     @Test
@@ -45,5 +46,19 @@ class BoxTest {
         Box box = new Box(-1, 10);
         boolean result = box.isExist();
         assertThat(result).isFalse();
+    }
+
+    @Test
+    void getAreaByVertex8Edge10Then600() {
+        Box box = new Box(8, 10);
+        double result = box.getArea();
+        assertThat(result).isEqualTo(600, withPrecision(1e-9));
+    }
+
+    @Test
+    void getAreaByVertex2Edge4Then0() {
+        Box box = new Box(2, 4);
+        double result = box.getArea();
+        assertThat(result).isEqualTo(0);
     }
 }
