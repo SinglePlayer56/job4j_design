@@ -27,7 +27,7 @@ public class ForwardLinked<T> implements Iterable<T> {
 
     public T deleteFirst() {
         if (head == null) {
-            throw new NoSuchElementException();
+            throw new NoSuchElementException("Queue is empty");
         }
         T deletedItem = head.item;
         head = head.next;
