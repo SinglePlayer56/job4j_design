@@ -30,11 +30,13 @@ public class ForwardLinked<T> implements Iterable<T> {
             throw new NoSuchElementException();
         }
         Node<T> deletedNode = head;
+        T result = deletedNode.item;
         head = head.next;
         deletedNode.next = null;
+        deletedNode.item = null;
         size--;
         modCount++;
-        return deletedNode.item;
+        return result;
     }
 
     public void addFirst(T value) {
