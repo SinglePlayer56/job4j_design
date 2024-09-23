@@ -11,22 +11,25 @@ public class SimpleArraySet<T> implements SimpleSet<T> {
 
     @Override
     public boolean add(T value) {
+        boolean res = false;
         if (!contains(value)) {
             set.add(value);
-            return true;
+            res = true;
         }
-        return false;
+        return res;
     }
 
     @Override
     public boolean contains(T value) {
+        boolean res = false;
         Iterator<T> iterator = iterator();
         while (iterator.hasNext()) {
             if (Objects.equals(iterator.next(), value)) {
-                return true;
+                res = true;
+                break;
             }
         }
-        return false;
+        return res;
     }
 
     @Override
