@@ -17,9 +17,9 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         if (container.length == size) {
             increaseSize();
         }
+        container[size] = value;
         size++;
         modCount++;
-        container[size - 1] = value;
     }
 
     private void increaseSize() {
@@ -44,8 +44,8 @@ public class SimpleArrayList<T> implements SimpleList<T> {
                 index,
                 size - index - 1
         );
-        container[size - 1] = null;
         size--;
+        container[size] = null;
         modCount++;
         return oldValue;
     }
