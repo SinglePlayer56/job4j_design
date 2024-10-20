@@ -18,52 +18,36 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
         if ((float) count / capacity >= LOAD_FACTOR) {
             expand();
         }
+        boolean result = false;
         int index = getIndex(key);
-        if (Objects.nonNull(table[index])) {
-            return false;
+        if (Objects.isNull(table[index])) {
+            table[index] = new MapEntry<>(key, value);
+            count++;
+            modCount++;
+            result = true;
         }
-        table[index] = new MapEntry<>(key, value);
-        count++;
-        modCount++;
-        return true;
+        return result;
     }
 
     @Override
     public V get(K key) {
         int index = getIndex(key);
         MapEntry<K, V> entry = table[index];
-        if (Objects.isNull(entry)) {
-            return null;
-        }
-        if (Objects.isNull(key) && Objects.isNull(entry.key)) {
-            return entry.value;
-        }
-        if (isEqualsKey(key, entry.key)) {
-            return entry.value;
-        }
-        return null;
+        return isValidEntry(entry, key) ? entry.value : null;
     }
 
     @Override
     public boolean remove(K key) {
+        boolean result = false;
         int index = getIndex(key);
         MapEntry<K, V> entry = table[index];
-        if (Objects.isNull(entry)) {
-            return false;
-        }
-        if (Objects.isNull(key) && Objects.isNull(entry.key)) {
+        if (isValidEntry(entry, key)) {
             table[index] = null;
             count--;
             modCount++;
-            return true;
+            result = true;
         }
-        if (isEqualsKey(key, entry.key)) {
-            table[index] = null;
-            count--;
-            modCount++;
-            return true;
-        }
-        return false;
+        return result;
     }
 
     @Override
@@ -92,6 +76,10 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
                 return data[index++].key;
             }
         };
+    }
+
+    private boolean isValidEntry(MapEntry<K, V> entry, K key) {
+        return Objects.nonNull(entry) && (Objects.isNull(key) && Objects.isNull(entry.key) || isEqualsKey(key, entry.key));
     }
 
     private int hash(int hashCode) {
