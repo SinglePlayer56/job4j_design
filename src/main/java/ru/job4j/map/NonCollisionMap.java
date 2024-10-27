@@ -79,7 +79,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     }
 
     private boolean isValidEntry(MapEntry<K, V> entry, K key) {
-        return Objects.nonNull(entry) && (Objects.isNull(key) && Objects.isNull(entry.key) || isEqualsKey(key, entry.key));
+        return Objects.nonNull(entry) && isEqualsKey(key, entry.key);
     }
 
     private int hash(int hashCode) {
@@ -111,8 +111,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
     }
 
     private boolean isEqualsKey(K firstKey, K secondKey) {
-        return Objects.nonNull(firstKey) && Objects.nonNull(secondKey)
-                && Objects.equals(firstKey.hashCode(), secondKey.hashCode())
+        return Objects.equals(Objects.hashCode(firstKey), Objects.hashCode(secondKey))
                 && Objects.equals(firstKey, secondKey);
     }
 
