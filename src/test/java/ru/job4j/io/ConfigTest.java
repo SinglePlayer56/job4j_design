@@ -25,8 +25,32 @@ class ConfigTest {
     }
 
     @Test
-    void whenFileWithMalformedLinesThenThrowException() {
-        String path = "./data/malformed_lines.properties";
+    void whenEmptyKeyFileWithMalformedLinesThenThrowException() {
+        String path = "./data/empty_key.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenEmptyValueFileWithMalformedLinesThenThrowException() {
+        String path = "./data/empty_value.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenNotEqualFileWithMalformedLinesThenThrowException() {
+        String path = "./data/not_equal.properties";
+        Config config = new Config(path);
+        assertThatThrownBy(config::load)
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void whenEmptyKeyAndEmptyValueFileWithMalformedLinesThenThrowException() {
+        String path = "./data/empty_key_and_empty_value.properties";
         Config config = new Config(path);
         assertThatThrownBy(config::load)
                 .isInstanceOf(IllegalArgumentException.class);
