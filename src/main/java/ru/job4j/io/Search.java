@@ -23,6 +23,9 @@ public class Search {
         if (args.length < 2) {
             throw new IllegalArgumentException("Неверное количество аргументов");
         }
+        if (args[0].isBlank()) {
+            throw new IllegalArgumentException("Некорректный путь");
+        }
         if (!args[1].startsWith(".")) {
             throw new IllegalArgumentException("Расширение должно начинаться с \".\"");
         }
