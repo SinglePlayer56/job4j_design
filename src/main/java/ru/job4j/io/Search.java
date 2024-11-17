@@ -24,7 +24,7 @@ public class Search {
         if (args.length < 2) {
             throw new IllegalArgumentException("Неверное количество аргументов");
         }
-        if (args[0].isBlank() || !Path.of(args[0]).toFile().isDirectory()) {
+        if (!Path.of(args[0]).toFile().isDirectory()) {
             throw new IllegalArgumentException("Переданный путь не является директорией");
         }
         if (!args[1].startsWith(".")) {
