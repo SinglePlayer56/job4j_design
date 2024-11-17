@@ -37,9 +37,15 @@ public class Zip {
     }
 
     public static void validateArgs(ArgsName argsName) {
-        argsName.get("d");
-        argsName.get("o");
+        String directory = argsName.get("d");
+        String output = argsName.get("o");
         String extension = argsName.get("e");
+        if (!Path.of(directory).toFile().isDirectory()) {
+            throw new IllegalArgumentException("%s не является директорией".formatted(directory));
+        }
+        if (!output.endsWith(".zip")) {
+            throw new IllegalArgumentException("Выходной файл должен иметь расширение \".zip\"");
+        }
         if (!extension.startsWith(".")) {
             throw new IllegalArgumentException("Расширение должно начинаться с \".\"");
         }
