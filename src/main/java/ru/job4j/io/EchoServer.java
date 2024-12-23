@@ -21,8 +21,12 @@ public class EchoServer {
                     for (String string = input.readLine(); string != null && !string.isEmpty(); string = input.readLine()) {
                         if (firstLine) {
                             String msg = extractParamValue(string, "msg");
-                            if (Objects.equals("Bye", msg)) {
-                                server.close();
+                            if (Objects.nonNull(msg)) {
+                                switch (msg) {
+                                    case "Hello" -> output.write("Hello".getBytes());
+                                    case "Exit" -> server.close();
+                                    default -> output.write("What".getBytes());
+                                }
                             }
                             firstLine = false;
                         }
