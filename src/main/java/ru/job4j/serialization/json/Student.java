@@ -18,7 +18,7 @@ public class Student {
         this.subjects = subjects;
     }
 
-    public boolean isFullTime() {
+    public boolean getFullTime() {
         return isFullTime;
     }
 
